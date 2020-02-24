@@ -1,13 +1,21 @@
-﻿using System;
+﻿using OneProtoTool.Commands;
+using OneProtoTool.Models;
+using System;
 
 namespace OneProtoTool
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new Program();
             Console.ReadKey();            
+        }
+
+        public Program()
+        {
+            new GenerateCommand().Excute();
         }
     }
 }
