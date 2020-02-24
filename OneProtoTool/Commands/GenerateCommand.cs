@@ -38,6 +38,7 @@ namespace OneProtoTool.Commands
 
             FindProtos(configModel.GetProtosDir());
             GenerateCSharpFiles();
+            GenerateMsgIdFile();
         }
 
         /// <summary>
@@ -77,14 +78,6 @@ namespace OneProtoTool.Commands
         }
 
         /// <summary>
-        /// 分析协议，生成消息Id类，以及所有使用的类的命名空间
-        /// </summary>
-        void GenerateMsgIdFile()
-        {
-
-        }
-
-        /// <summary>
         /// 生成C#类
         /// </summary>
         void GenerateCSharpFiles()
@@ -103,6 +96,23 @@ namespace OneProtoTool.Commands
                 var psi = new ProcessStartInfo(_protocFile.Name, cmd);
                 Process.Start(psi);                
             }            
+        }
+
+        /// <summary>
+        /// 分析协议，生成消息Id类，以及所有使用的类的命名空间
+        /// </summary>
+        void GenerateMsgIdFile()
+        {
+            var outputDir = _configModel.GetOutputDir();
+            for (int i = 0; i < _protos.Count; i++)
+            {
+                var proto = _protos[i];
+                string fileName;
+                string content;
+                proto.Analyse(out fileName, out content);
+                fileName = Path.Combine(outputDir.Name, fileName);
+                File.WriteAllText(fileName, content);
+            }
         }
     }
 }
