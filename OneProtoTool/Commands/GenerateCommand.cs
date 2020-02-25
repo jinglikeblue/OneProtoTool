@@ -39,7 +39,27 @@ namespace OneProtoTool.Commands
             FindProtos(configModel.GetProtosDir());
             GenerateCSharpFiles();
             GenerateMsgIdFile();
-        }
+
+            //拷贝代码到指定目录
+            var copyPath = configModel.GetVO().copyPath;
+            if(!string.IsNullOrEmpty(copyPath))
+            {
+                var di = new DirectoryInfo(copyPath);
+                if (!di.Exists)
+                {
+                    di.Create();
+                }
+
+                var files = _configModel.GetOutputDir().GetFiles("*.cs", SearchOption.TopDirectoryOnly);
+                foreach(var file in files)
+                {
+                    var destFile = Path.Combine(copyPath, file.Name);
+                    file.CopyTo(destFile, true);
+                }
+
+                Console.WriteLine("文件拷贝到：" + copyPath);
+            }            
+        }        
 
         /// <summary>
         /// 找到所有的协议文件,根据文件名称排序

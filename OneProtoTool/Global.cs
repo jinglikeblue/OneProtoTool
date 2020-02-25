@@ -13,7 +13,7 @@ namespace OneProtoTool
         static int _msgIdIndex = 1;
 
         public static int NewMsgId()
-        {
+        {            
             return _msgIdIndex++;
         }
 
@@ -22,13 +22,11 @@ namespace OneProtoTool
         /// <summary>
         /// 配置文件地址
         /// </summary>
-        public const string CONFIG_PATH = "config.json";
-
-        
+        public const string CONFIG_PATH = "config.json";        
 
         /// <summary>
         /// 配置模块
         /// </summary>
-        public ConfigModel config = new ConfigModel();
+        public readonly ConfigModel config = new ConfigModel();
     }
 }

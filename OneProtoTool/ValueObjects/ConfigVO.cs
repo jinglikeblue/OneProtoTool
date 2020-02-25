@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OneProtoTool.ValueObjects
+﻿namespace OneProtoTool.ValueObjects
 {
     /// <summary>
-    /// 配置类
+    /// 配置类（参看config.json）
     /// </summary>
     class ConfigVO
     {
@@ -23,6 +19,10 @@ namespace OneProtoTool.ValueObjects
         /// protoc.exe文件路径
         /// </summary>
         public string protocFile = "protoc.exe";
-        
+
+        /// <summary>
+        /// 如果不为空，则生成完成后，代码拷贝到该路径(绝对路径)
+        /// </summary>
+        public string copyPath = null;
     }
 }

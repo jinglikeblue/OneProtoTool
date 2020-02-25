@@ -6,16 +6,17 @@ namespace OneProtoTool
 {
     class Program
     {
-        
+
         static void Main(string[] args)
         {
             new Program();
-            Console.ReadKey();            
+            Console.ReadKey();
         }
 
         public Program()
         {
             new GenerateCommand().Excute();
+            Console.WriteLine("已完成");
         }
     }
 }
