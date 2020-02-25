@@ -7,6 +7,16 @@ namespace OneProtoTool
     /// </summary>
     class Global
     {
+        /// <summary>
+        /// 协议Id自增序列
+        /// </summary>
+        static int _msgIdIndex = 1;
+
+        public static int NewMsgId()
+        {
+            return _msgIdIndex++;
+        }
+
         public static Global Ins { get; } = new Global();
 
         /// <summary>
@@ -14,10 +24,7 @@ namespace OneProtoTool
         /// </summary>
         public const string CONFIG_PATH = "config.json";
 
-        /// <summary>
-        /// 协议Id自增序列
-        /// </summary>
-        public int msgIdIndex = 1;
+        
 
         /// <summary>
         /// 配置模块

@@ -56,8 +56,15 @@ namespace OneProtoTool.ValueObjects
             _outputFileName = fileName = msgName.Substring(0, 1).ToUpper() + msgName.Substring(1) + "MsgId.cs";
 
             AnalyseProtoFile();
-            
-            content = GenerateContent();                               
+
+            if (_desc.protoName.Count == 0)
+            {
+                content = null;
+            }
+            else
+            {
+                content = GenerateContent();
+            }
         }
 
         void AnalyseProtoFile()
@@ -82,7 +89,7 @@ namespace OneProtoTool.ValueObjects
                         //是个协议，往上找他的注释
                         explain = FindExplain(i, lines);
 
-                        desc.protoName.Add(explain);
+                        desc.protoName.Add(name);
                         desc.protoExplain.Add(explain);
                     }
                 }
@@ -145,9 +152,23 @@ namespace OneProtoTool.ValueObjects
             }
             var output = CLASS_TEMPLATE.Replace("[namespace_name]", _desc.namespaceName);
             output = output.Replace("[class_name]", _desc.className);
-            output = output.Replace("[msg_field]", _desc.className);
-            return output;
-               
+            output = output.Replace("[msg_field]", GenerateMsgFields());
+            return output;               
+        }
+
+        string GenerateMsgFields()
+        {
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0; i < _desc.protoName.Count; i++)
+            {
+                var name = _desc.protoName[i];
+                var explain = _desc.protoExplain[i];
+                var field = CLASS_FIELD_TEMPLATE.Replace("[proto_explain]", explain);
+                field = field.Replace("[proto_name]", name);
+                field = field.Replace("[msg_id]", Global.NewMsgId().ToString());
+                sb.Append(field);                
+            }
+            return sb.ToString();
         }
     }
 }
