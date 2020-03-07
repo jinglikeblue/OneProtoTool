@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OneProtoTool.ValueObjects
 {
-    class ProtoInfoVO
+    class ProtoInfoModel
     {
         class ProtoDesc
         {
@@ -41,7 +41,7 @@ namespace OneProtoTool.ValueObjects
 
         ProtoDesc _desc;
 
-        public ProtoInfoVO(FileInfo fi)
+        public ProtoInfoModel(FileInfo fi)
         {
             this.fi = fi;
             name = fi.Name;            

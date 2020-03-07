@@ -14,7 +14,7 @@ namespace OneProtoTool.Commands
     {
         const string MSG_ID_FILE_NAME = "MsgId.cs";
 
-        List<ProtoInfoVO> _protos;
+        List<ProtoInfoModel> _protos;
 
         FileInfo _protocFile;
 
@@ -68,13 +68,13 @@ namespace OneProtoTool.Commands
         void FindProtos(DirectoryInfo di)
         {
             var fiList = di.GetFiles("*.proto", SearchOption.AllDirectories);
-            List<ProtoInfoVO> protoInfos = new List<ProtoInfoVO>();
+            List<ProtoInfoModel> protoInfos = new List<ProtoInfoModel>();
             foreach (var fi in fiList)
             {
-                protoInfos.Add(new ProtoInfoVO(fi));
+                protoInfos.Add(new ProtoInfoModel(fi));
             }
             //按照名称，进行一次排序
-            protoInfos.Sort((ProtoInfoVO a, ProtoInfoVO b) =>
+            protoInfos.Sort((ProtoInfoModel a, ProtoInfoModel b) =>
             {
                 var aChars = a.name.ToCharArray();
                 var bChars = b.name.ToCharArray();

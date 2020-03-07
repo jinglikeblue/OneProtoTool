@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OneProtoTool.ValueObjects;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace OneProtoTool.Models
 {
@@ -27,9 +25,9 @@ namespace OneProtoTool.Models
                     _vo = JsonConvert.DeserializeObject<ConfigVO>(json);
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Console.Write(e.Message);                
+                Console.WriteLine("已自动生成config.json， 使用方法参考「README.md」");                
             }
 
             if(null == _vo)

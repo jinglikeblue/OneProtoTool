@@ -10,7 +10,9 @@ namespace OneProtoTool
         static void Main(string[] args)
         {
             new Program();
+#if DEBUG
             Console.ReadKey();
+#endif
         }
 
         public Program()
