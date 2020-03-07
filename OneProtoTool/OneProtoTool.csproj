@@ -2,10 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net47</TargetFramework>
     <StartupObject>OneProtoTool.Program</StartupObject>
     <ApplicationIcon />
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <Authors>Jing</Authors>
+    <Company>Pieces</Company>
+    <Product />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -13,8 +16,23 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\Release\</OutputPath>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="4.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy $(SolutionDir)Protoc_3.4.0_bin\tool\protoc.exe $(TargetDir) /y&#xD;&#xA;xcopy $(SolutionDir)README.md $(TargetDir) /y&#xD;&#xA;mkdir $(TargetDir)protos;&#xD;&#xA;mkdir $(TargetDir)csharp;&#xD;&#xA;del $(TargetPath).config;" />
+  </Target>
 
 </Project>
