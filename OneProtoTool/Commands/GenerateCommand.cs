@@ -21,13 +21,13 @@ namespace OneProtoTool.Commands
         ConfigModel _configModel;
 
         public GenerateCommand()
-        {
+        {            
             Console.WriteLine(AppContext.BaseDirectory);
         }
 
         public void Excute()
-        {
-            Global.Ins.config.Init();
+        {            
+            Global.Ins.config.Init();            
             var configModel = Global.Ins.config;
             _configModel = configModel;
             _protocFile = configModel.GetProtocFile();

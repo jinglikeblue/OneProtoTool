@@ -12,6 +12,11 @@ namespace OneProtoTool
         /// </summary>
         static int _msgIdIndex = 1;
 
+        /// <summary>
+        /// 调用EXE时，传入的导出目录
+        /// </summary>
+        public static string outputDir = null;
+
         public static int NewMsgId()
         {            
             return _msgIdIndex++;
@@ -28,5 +33,6 @@ namespace OneProtoTool
         /// 配置模块
         /// </summary>
         public readonly ConfigModel config = new ConfigModel();
+
     }
 }

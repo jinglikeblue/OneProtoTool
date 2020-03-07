@@ -32,10 +32,21 @@ namespace OneProtoTool.Models
 
             if(null == _vo)
             {
-                _vo = new ConfigVO();
-                string json = JsonConvert.SerializeObject(_vo, Formatting.Indented);
-                File.WriteAllText(Global.CONFIG_PATH, json);
+                _vo = new ConfigVO();                
+                SaveVO();
             }
+
+            if(null != Global.outputDir)
+            {
+                _vo.copyPath = Global.outputDir;
+                SaveVO();
+            }
+        }
+
+        void SaveVO()
+        {
+            string json = JsonConvert.SerializeObject(_vo, Formatting.Indented);
+            File.WriteAllText(Global.CONFIG_PATH, json);
         }
 
         /// <summary>

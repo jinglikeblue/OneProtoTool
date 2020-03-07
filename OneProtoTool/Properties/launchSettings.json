@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "OneProtoTool": {
+      "commandName": "Project",
+      "commandLineArgs": "D:/projects/one_projects/OneClient_Unity/Assets/@Scripts/Generated/Net"
+    }
+  }
+}
