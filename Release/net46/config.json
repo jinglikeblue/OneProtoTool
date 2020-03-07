@@ -1,6 +1,0 @@
-{
-  "protoSourceDir": "protos",
-  "csharpOutputDir": "csharp",
-  "protocFile": "protoc.exe",
-  "copyPath":"D:/projects/OneProtoTool/Release/Temp"
-}
