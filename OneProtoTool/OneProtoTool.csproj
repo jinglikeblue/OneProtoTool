@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="del $(OutDir)OneProtoTool.exe.config&#xD;&#xA;mkdir $(OutDir)protos&#xD;&#xA;mkdir $(OutDir)csharp" />
+    <Exec Command="xcopy $(SolutionDir)Protoc_3.4.0_bin\tool\protoc.exe $(TargetDir) /y&#xD;&#xA;xcopy $(SolutionDir)README.md $(TargetDir) /y&#xD;&#xA;mkdir $(TargetDir)protos;&#xD;&#xA;mkdir $(TargetDir)csharp;&#xD;&#xA;del $(TargetPath).config;" />
   </Target>
 
 </Project>
