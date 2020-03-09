@@ -75,10 +75,9 @@ namespace OneProtoTool.ValueObjects
             for(int i = 0; i < lines.Length; i++)
             {
                 var tempLine = lines[i].Trim();
-                int packageIndex = tempLine.IndexOf("package");
-                if (packageIndex > -1)
+                if(tempLine.StartsWith("package"))
                 {
-                    desc.namespaceName = tempLine.Substring(7, tempLine.IndexOf(";") - 7);
+                    desc.namespaceName = tempLine.Substring(7, tempLine.IndexOf(";") - 7).Trim();
                 }
                 else
                 {
