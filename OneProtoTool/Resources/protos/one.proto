@@ -1,0 +1,36 @@
+syntax = "proto3";
+package One;
+
+//消息协议包
+message ProtoPackage{
+	int32 msgId = 1; //消息Id
+	bytes msgBody = 2; //消息体
+}
+
+//请求登录
+message ReqLogin{
+	string nickname = 1;  //昵称	
+}
+
+//登录回复
+message RspLogin{
+	int32 id = 1; //id
+	int32 roomId = 2; //进入的房间id
+}
+
+//推送角色状态
+message PushRole{
+	int32 id = 1;
+	string nickname = 2;	
+}
+
+//发送消息
+message ReqMsg{
+	string content = 1;
+}
+
+//推送消息
+message PushMsg{
+	int32 id = 1;
+	string content = 2;
+}
